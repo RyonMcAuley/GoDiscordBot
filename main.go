@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "embed"
-	"fmt"
+	"strings"
 
 	bot "example.com/roboanna/Bot"
 )
@@ -11,12 +11,7 @@ import (
 var token string
 
 func main() {
-	//read token from file :P
-	// dat, err := os.ReadFile("token.txt")
-	// if err != nil {
-	// 	panic(err)
-	// }
-	fmt.Println("Token: ", token)
-	bot.BotToken = string(token)
+	token = strings.TrimSpace(token)
+	bot.BotToken = token
 	bot.Run()
 }
