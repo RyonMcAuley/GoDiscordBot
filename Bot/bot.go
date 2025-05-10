@@ -33,6 +33,11 @@ func Run() {
 
 	// add a event handler
 	discord.AddHandler(newMessage)
+	discord.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		if h, ok := commandHandlers[i.ApplicationCommandData().Name]; ok {
+			h(s, i)
+		}
+	})
 
 	// open session
 	discord.Open()
